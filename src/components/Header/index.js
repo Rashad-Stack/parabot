@@ -22,13 +22,13 @@ const Index = () => {
           </div>
           <Button
             title={<FcMenu />}
-            className="md:hidden bg-transparent text-xl border-0"
+            className="lg:hidden bg-transparent text-xl border-0"
             onClick={() => setMenu(!menu)}
           />
           <nav
-            className={`lg:space-x-20 flex flex-col lg:flex-row absolute lg:static bg-white lg:bg-transparent top-[100%] left-0 z-[999] h-96 lg:h-auto w-full  justify-center items-center space-y-8 md:space-y-0 ${
+            className={`${
               menu ? 'hidden' : ''
-            }`}
+            }lg:flex lg:space-x-20 flex flex-col lg:flex-row absolute lg:static bg-white lg:bg-transparent top-[100%] left-0 z-[999] h-96 lg:h-auto w-full  justify-center items-center space-y-8 md:space-y-0 `}
           >
             <NavLink
               links={[
