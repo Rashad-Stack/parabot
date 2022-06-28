@@ -5,11 +5,12 @@ import { Container } from '../Custom';
 import NavLink from './NavLink';
 import Button from '../Button';
 import { FcMenu } from 'react-icons/fc';
+// import component 👇
 
 const Index = () => {
   const [menu, setMenu] = useState(false);
   return (
-    <header className="bg-[#FCF9F5] sticky top-0 z-[9999]">
+    <header className="bg-[#FCF9F5] sticky top-0 z-[9]">
       <Container>
         <div className="flex justify-between items-center py-8">
           <div>

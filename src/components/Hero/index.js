@@ -9,6 +9,7 @@ export class Index extends Component {
     value: '',
     imgWidth: 'w-3/5',
   };
+
   widthChangeHandler = () => {
     this.setState({ imgWidth: 'w-1/5' });
   };
@@ -20,7 +21,7 @@ export class Index extends Component {
     return (
       <section className="title-gradient md:pb-16">
         <div className="flex flex-col sm:flex-row md:flex-row gap-y-10 items-center h-[90vh]">
-          <div className="w-full h-full md:w-2/5 relative z-50 order-2 sm:order-1">
+          <div className="w-full h-full md:w-2/5 relative z-[1] order-2 sm:order-1">
             <div className="static sm:absolute px-2 lg:pl-0 sm:pl-5 md:absolute sm:top-48 md:top-24 lg:top-48 lg:left-[28%] sm:left-0 w-full h-full space-y-5">
               <h1 className="text-2xl md:text-5xl md:leading-relaxed lg:text-7xl  font-extrabold lg:leading-normal md:mb-6">
                 Future <br /> Of furniture

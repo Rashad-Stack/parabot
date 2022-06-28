@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Showcase from './components/Showcase';
 import Shop from './components/Shop';
+import Product from './components/Product';
 import Spired from './components/Spired';
 import Review from './components/Review';
 import Newsletter from './components/NewsLetter';
@@ -17,6 +18,7 @@ function App() {
       <Services />
       <Showcase />
       <Shop />
+      <Product />
       <Spired />
       <Review />
       <Newsletter />
