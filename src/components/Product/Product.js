@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ManageCart from './ManageCart';
+import Checkout from './Checkout';
 import { BsCartPlus } from 'react-icons/bs';
 import { BsCartCheck } from 'react-icons/bs';
 import { GiShoppingCart } from 'react-icons/gi';
@@ -14,6 +15,7 @@ import 'react-modern-drawer/dist/index.css';
 const Product = ({ products, getId, gotId }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const cartButtonHandler = (product) => {
     if (!checkExists(product)) return setCartItems([...cartItems, product]);
@@ -33,7 +35,11 @@ const Product = ({ products, getId, gotId }) => {
     product.splice(index, 1);
     setCartItems([...product]);
   };
-
+  const getTotalPrice = (product) => {
+    let sum = 0;
+    cartItems.forEach((item) => (sum += item.price));
+    setTotalPrice(sum);
+  };
   return (
     <>
       {!!products?.length &&
@@ -90,7 +96,7 @@ const Product = ({ products, getId, gotId }) => {
         className=""
         size={400}
       >
-        <div className="p-5 bg-neutral-200 space-y-2 h-full overflow-y-auto scrollbar-hide">
+        <div className="p-5 pb-44 bg-neutral-200 space-y-2 h-full overflow-y-auto scrollbar-hide relative">
           <h1 className="text-2xl text-[#94634b] font-bold mb-3 drop-shadow-md">
             Cart
           </h1>
@@ -126,11 +132,12 @@ const Product = ({ products, getId, gotId }) => {
                       {item?.colors?.map((color) => (
                         <span
                           key={color}
-                          className={`w-3 h-3 bg-[${color}] rounded-full inline-block cursor-pointer`}
+                          className={`w-3 h-3 rounded-full inline-block cursor-pointer`}
+                          style={{ backgroundColor: color }}
                         ></span>
                       ))}
 
-                      {/* <span className="w-3 h-3 bg-red-[] rounded-full inline-block cursor-pointer"></span>
+                      {/* <span className=`w-3 h-3 bg-[${color}] rounded-full inline-block cursor-pointer`></span>
                       <span className="w-3 h-3 bg-green-900 rounded-full inline-block cursor-pointer"></span>
                       <span className="w-3 h-3 bg-blue-900 rounded-full inline-block cursor-pointer"></span> */}
                     </div>
@@ -141,11 +148,12 @@ const Product = ({ products, getId, gotId }) => {
                       </span>
                     </div>
                   </div>
-                  <ManageCart product={item} />
+                  <ManageCart product={item} getTotalPrice={getTotalPrice} />
                 </div>
               </div>
             </div>
           ))}
+          <Checkout getTotalPrice={totalPrice} />
         </div>
       </Drawer>
     </>

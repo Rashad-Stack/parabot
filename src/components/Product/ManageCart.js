@@ -1,28 +1,39 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineMinus } from 'react-icons/ai';
 
-const ManageCart = ({ product }) => {
-  const [increment, setIncrement] = useState(1);
-  const increaseProduct = () => {
-    setIncrement(increment + 1);
+const ManageCart = ({ product, getTotalPrice }) => {
+  const [quantity, setQuantity] = useState(1);
+  useEffect(() => {
+    return () => {
+      getTotalPrice(product.price);
+    };
+  }, [getTotalPrice, product.price]);
+
+  const increaseProduct = (product) => {
+    setQuantity(quantity + 1);
+    // setQuantityPrice(quantityPrice + product.price);
+    getTotalPrice(product);
   };
-  const decreaseProduct = () => {
-    if (increment === 0) return;
-    setIncrement(increment - 1);
+  const decreaseProduct = (product) => {
+    if (quantity === 0) return;
+    setQuantity(quantity - 1);
+    // setQuantityPrice(quantityPrice - product.price);
+    getTotalPrice(product);
   };
+
   return (
     <div className="flex items-center space-x-5 ml-2">
       <button
         className="text-lg bg-[#94634b] rounded-md text-white p-1"
-        onClick={() => decreaseProduct()}
+        onClick={() => decreaseProduct(product)}
       >
         <AiOutlineMinus />
       </button>
-      <p className="text-gray-400 text-sm font-semibold">{increment}</p>
+      <p className="text-gray-400 text-sm font-semibold">{quantity}</p>
       <button
         className="text-lg bg-[#94634b] rounded-md text-white p-1"
-        onClick={() => increaseProduct()}
+        onClick={() => increaseProduct(product)}
       >
         <AiOutlinePlus />
       </button>
